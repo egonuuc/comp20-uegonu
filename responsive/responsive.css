@@ -16,27 +16,27 @@
 	.ralphy {
 				width: 250px;
 				height: 187px;
-				background: url(ralphy.gif) 0px 187px;
+				background: url(ralphy.gif) 0px 374px;
 	}
 }
 @media screen and (min-width: 800px) and (max-width: 1000px) {
 	.ralphy {
 				width: 250px;
 				height: 187px;
-				background: url(ralphy.gif) 250px 187px;
+				background: url(ralphy.gif) 250px 374px;
 	}
 }
 @media screen and (min-width: 600px) and (max-width: 800px) {
 	.ralphy {
 				width: 250px;
 				height: 187px;
-				background: url(ralphy.gif) 0px 374px;
+				background: url(ralphy.gif) 0px 187px;
 	}
 }
 @media screen and (max-width: 600px) {
 	.ralphy {
 				width: 250px;
 				height: 187px;
-				background: url(ralphy.gif) 250px 374px;
+				background: url(ralphy.gif) 250px 187px;
 	}
 }
