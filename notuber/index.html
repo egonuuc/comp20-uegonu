@@ -1,0 +1,142 @@
+
+
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Geolocation</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="geolocation_map_style.css" />
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry"></script>
+		
+		<script>
+			var myLat = 0;
+			var myLng = 0;
+			var lat = 0;
+			var lng = 0;
+			var passenger = new google.maps.LatLng(lat, lng);
+			var request = new XMLHttpRequest();
+			var me = new google.maps.LatLng(myLat, myLng);
+			var myOptions = {
+				zoom: 13,
+				center: me,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+			var distance;
+			var my_image;
+			var map;
+			var marker;
+			var carMarker;
+			var infowindow = new google.maps.InfoWindow();
+			var aVehicle = false;	
+			
+			function init()
+			{
+				map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+				getMyLocation();
+    		}
+
+			function myFunction(object) {
+				for (var i = 0; i < object.length; i++){
+					lat = object[i].lat;
+					lng = object[i].lng;
+
+					passenger = new google.maps.LatLng(lat, lng);
+						if (aVehicle)
+							var url = "black_car.png";					
+						else 
+							var url = "snake.png";	
+						
+					var their_image = {
+						scaledSize: new google.maps.Size(50,50),
+						url: url
+					}
+					//console.log(passenger);
+					var distance = google.maps.geometry.spherical.computeDistanceBetween(me, passenger);
+					distance = distance * 0.000621371192;
+
+					marker = new google.maps.Marker({
+						position: passenger,
+						title: 'username: ' + object[i].username + '  ' + 'distance: ' + distance, 
+						icon: their_image
+					});
+					marker.setMap(map);
+
+					google.maps.event.addListener(marker, 'click', function() {
+						infowindow.setContent(this.title);
+						infowindow.open(map, this);
+					});
+				}
+			}	
+			function getMyLocation() {
+				if (navigator.geolocation) { 
+					navigator.geolocation.getCurrentPosition(function(position) {
+						myLat = position.coords.latitude;
+						myLng = position.coords.longitude;
+
+						var request = new XMLHttpRequest();
+						request.open('POST',"https://defense-in-derpth.herokuapp.com/submit",true);
+						request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+						username = "1fH5MXna";
+						//username = "Xgzbl3n7";
+						var data = "username=" + username + "&lat=" + myLat + "&lng=" + myLng;
+						request.send(data);
+
+						var obj = {};
+
+						request.onreadystatechange = function () {
+		        			if(request.readyState == 4) {
+		        			obj = JSON.parse(request.response);
+		        			if (obj.vehicles){
+		        				aVehicle = true;
+		        				obj = obj.vehicles;		
+		        			}		        			
+		        			else{
+		        				aVehicle = false;
+		        				obj = obj.passengers;	
+		        			}
+							renderMap();
+		        			myFunction(obj);
+		        			}
+		    			};
+					});
+				}
+				else {
+					alert("Geolocation is not supported by your web browser.  What a shame!");
+				}
+			}
+			function renderMap()
+			{
+				me = new google.maps.LatLng(myLat, myLng);
+
+				map.panTo(me);
+				if (aVehicle)
+					var url = "snake.png";					
+				else 
+					var url = "black_car.png";	
+
+				var my_image = {
+					scaledSize: new google.maps.Size(50,50),
+					url: url
+				}
+				carMarker = new google.maps.Marker({
+					position: me,
+					title: "Here I Am!",
+					icon: my_image
+				});
+				carMarker.setMap(map);
+					
+				google.maps.event.addListener(carMarker, 'click', function() {
+					infowindow.setContent(this.title);
+					infowindow.open(map, this);
+				});
+			}
+		</script>
+	</head>
+	<body onload="init()">
+		<div id="map_canvas"></div>
+	</body>
+</html>
