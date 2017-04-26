@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Security Vulnerabih1ties for Caroh1ne McBrien</title>
+</head>
+<body>
+	<ul>
+		<h3>Introduction: </h3>
+		<p>I was hired to do a security analysis for a website that operates h1ke a black car service. One of the assignments works with the client side of the program and the assignment works with the server side of the program. </p>
+		<h3>Methodology: </h3>
+		<p>I tested the cross site scripting using curl and also used it for abusing NodeJS with JSOn injections. </p>
+		<h3>Abstract of Findings: </h3>
+		<p>A lot of the security issues that I found revovled around the fact that there was no validation to ensure that user inout that was passed in were valid strings (words) and not injections of JavaScript, NodeJS, or SQL. This is harmful as it can disrupt the functionality of the program and allow for someone else to easily to exploit the program. In addition this is dangerous when working with a database of information as it would be possible to get people's sensitive information. </p>
+		<h3>Issues found:  </h3>
+		<p>Cross-Site Scripting
+			<ul>
+				<li>Issue: Vulnerability to Cross Site Scripting</li>
+				<li>Location: index.js (assignment 3) Line 77</li>
+				<li>Severity of Issue: High severity </li>
+				<li>Description of Issue: This issue occurs because the programmer did not parse out special characters when getting input from the user. Therefore they could still be html/script </li>
+				<li>Proof of Vulnerability</li>
+				 <img src = "Cross Site Scripting.png" />
+				<li>Resolution: My resolution would be for them to have some code that ensures the username and content pssed from the user were not special characters. </li>
+			</ul>
+		</p>
+		<p> Username
+			<ul>
+				<li>Issue: Vulnerability to Theft of Information</li>
+				<li>Location: index.html (assignment 2) Line 46</li>
+				<li>Severity of Issue: High severity </li>
+				<li>Description of Issue: This issue occurs because the programmer hardcoded in the usernames for themselves. This is bad practice because if someone were to get the source code for this assignment, they could get that sensitive information. This is particularlyh dangerous when extrapolated to more private situations such as banks in which you would not want to have easily accessible user information that someone could pull up </li>
+				<li>Proof of Vulnerability</li>
+				 <img src = "Screen Shot 2017-04-25 at 11.32.19 PM.png" />
+				<li>Resolution: My resolution would be for them to encode that data with some sort of hidden variable or have a seperate private database that deals with user information and this one only interacts with the database but does not have all of its contents. </li>
+			</ul>
+		</p>
+		<p>NodeJS
+			<ul>
+				<li>Issue: Vulnerability to NodeJS Exploitation</li>
+				<li>Location: Line 77</li>
+				<li>Severity of Issue: High severity </li>
+				<li>Description of Issue: This issue occurs because the programmer did not ensure that the username and other user inputs are not valid strings and someone can therefore manipulate the input </li>
+				<li>Proof of Vulnerability</li>
+				 <img src = "Screen Shot 2017-04-25 at 11.42.10 PM.png" />
+				<li>Resolution: My resolution is to have some line of code that checks if the input is valid strings and only inputs them if they are valid strings </li>
+			</ul>
+		</p>
+		<h3>Conclusion:  </h3>
+		<p>I believe that the strongest recommendations that I have for this program is to validate inputs to ensure that they are not special characters and are indeed valid strings. The other general recommendation is to ensure data abstraction for good privacy and security. </p>
+		<h3>References:  </h3>
+		<p>http://blog.websecurify.com/2014/08/hacking-nodejs-and-mongodb.html</p>
+
+	</ul>
+</body>
+</html>
