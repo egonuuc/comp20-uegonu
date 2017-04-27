@@ -1,1 +1,9 @@
-# comp20-uegonu
+1. The purpose of this Git repository is to allow for better revision control when multiple are trying to access or work on one project. Partners are able to get updated work and everybody is able to see and assess the work of others. 
+
+2. My favorite lab was the lab in which we created the lyrics to "help Mariah sing". I thought it was a fun way to teach JavaScript and get myself familiar with the idea of events and writing basing JavaScript functions. 
+
+3. I think I've grown a lot from day 1 of this course because I have a better understanding of the dynamics of real world programming. I've learned great skills for web design with HTML, CSS, and JavaScript. However, I learned invaluable knowledge with regards to what happens behind the scenes when I visit sites, what make sites more secure than others, how programmers collaborate together using Git, and how to best dig for the knowledge you're looking for when you need help. Those are things that I wasn't as well versed at after finishing Comp11. 
+
+4. I think the most important thing I learned in this class was collaboration as a computer programmer. The first example I can give is the proper use of Git and how helpful that is when working on a project. In the group project that helps us all understand what each group member is doind and how that shapes our project. Another example comes from communicating with members in my group for our project. We learned so much in terms brainstorming ideas for a coding project and utilizing each other's skills to deliver the best product possible. 
+
+5. One topic I would personally like to delve deeper into is the topic of JavaScript and the frameworks that are used with it. I thought it was great to learn all of the fun, interactive things you could do with JavaScript and I'd love to learn more about how that is used to build some of my favorite websites. 
